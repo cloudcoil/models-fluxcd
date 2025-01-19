@@ -1,6 +1,6 @@
 [project]
 name = "cloudcoil.models.fluxcd"
-version = "0.0.0"
+version = "2.4.0.0"
 description = "Versioned fluxcd models for cloudcoil"
 authors = [{ name = "Sambhav Kothari", email = "sambhavs.email@gmail.com" }]
 maintainers = [{ name = "Sambhav Kothari", email = "sambhavs.email@gmail.com" }]
