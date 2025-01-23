@@ -201,7 +201,7 @@ test = [
 
 [[package]]
 name = "cloudcoil-models-fluxcd"
-version = "0.0.0"
+version = "2.4.0.0"
 source = { editable = "." }
 dependencies = [
     { name = "cloudcoil" },
