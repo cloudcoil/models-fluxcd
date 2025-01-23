@@ -65,6 +65,53 @@ fluxkustomize.Kustomization.delete("my-app")
 fluxsource.GitRepository.delete("my-app")
 ```
 
+### Using the Fluent Builder API
+
+Cloudcoil provides a powerful fluent builder API with full IDE support and rich autocomplete capabilities. The builder pattern ensures type safety and provides intelligent code suggestions as you type:
+
+```python
+from cloudcoil.models.fluxcd.source.v1 import GitRepository
+from cloudcoil.models.fluxcd.kustomize.v1 import Kustomization
+
+# Create a GitRepository using the builder
+# Every step provides rich autocomplete and type hints
+repo = (
+    GitRepository.builder()  # IDE shows all available builder methods
+    .metadata(lambda m: m   # IDE shows all ObjectMeta fields
+        .name("my-app")
+        .namespace("default")
+    )
+    .spec(
+        lambda s: s         # IDE shows all GitRepositorySpec fields
+        .url("https://github.com/org/repo")
+        .interval("1m")
+        .ref(lambda r: r    # IDE shows all Ref fields
+            .branch("main")
+        )
+    )
+    .build()
+)
+
+# The builder validates your configuration at compile time
+kustomization = (
+    Kustomization.builder()
+    .metadata(lambda m: m.name("my-app").namespace("default"))
+    .spec(
+        lambda s: s.path("./kustomize")
+        .interval("5m")
+        .source_ref(lambda r: r.kind("GitRepository").name("my-app"))
+        .prune(True)
+    )
+    .build()
+)
+```
+
+The fluent builder provides:
+- ✨ Full IDE support with detailed type information
+- 🔍 Rich autocomplete for all fields and nested objects
+- ⚡ Compile-time validation of your configuration
+- 🎯 Clear and chainable API that guides you through resource creation
+
 ## 📚 Documentation
 
 For complete documentation, visit [cloudcoil.github.io/cloudcoil](https://cloudcoil.github.io/cloudcoil)
