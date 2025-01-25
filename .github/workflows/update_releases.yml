@@ -5,8 +5,6 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
-
 jobs:
   update-versions:
     permissions:
@@ -37,14 +35,11 @@ jobs:
           VERSION="${{ matrix.model_version }}.0"
           MINOR_VERSION=$(echo "${{ matrix.model_version }}" | cut -d'.' -f1,2)
           BRANCH="release-${MINOR_VERSION}"
-
           # Update version and input URL using sed
           sed -i "s/^version = .*/version = \"${VERSION}\"/" pyproject.toml
           sed -i "s|releases/download/v[0-9]\+\.[0-9]\+\.[0-9]\+/|releases/download/v${{ matrix.model_version }}/|" pyproject.toml
           # Generate models
           make gen-models
-          make lint test
-
           # Configure git
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -52,16 +47,14 @@ jobs:
           # Create temporary directory and handle repository
           TEMP_DIR=$(mktemp -d)
           cd "$TEMP_DIR"
-          
-          # Try to clone existing branch or initialize new repo
-          git clone --branch "$BRANCH" https://github.com/${{ github.repository }}.git . 2>/dev/null || {
-            git init
-            git remote add origin https://github.com/${{ github.repository }}.git
-          }
+
+          # Clone repo and checkout/create branch
+          git clone https://github.com/${{ github.repository }}.git .
+          git checkout "$BRANCH" 2>/dev/null || git checkout -b "$BRANCH"
 
           # Clear existing files (except .git)
           find . -mindepth 1 -not -path './.git*' -delete
-          
+
           # Copy new files and commit
           cp -a $GITHUB_WORKSPACE/. .
           git add -A
