@@ -1,3 +1,4 @@
+
 name: Update Versions
 
 on:
@@ -14,11 +15,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        model_version: ['2.4.0']
+        model_version: ['1.29.13', '1.30.9', '1.31.5', '1.32.1']
 
     steps:
       - uses: actions/checkout@v4
-
+        with:
+          token: ${{ secrets.CI_GITHUB_TOKEN }}
       - name: Install uv and set python
         uses: astral-sh/setup-uv@v4
         with:
@@ -38,8 +40,7 @@ jobs:
 
           # Update version and input URL using sed
           sed -i "s/^version = .*/version = \"${VERSION}\"/" pyproject.toml
-          sed -i "s|releases/download/v[0-9]\+\.[0-9]\+\.[0-9]\+/install.yaml|releases/download/v${{ matrix.model_version }}/install.yaml|" pyproject.toml
-
+          sed -i "s|releases/download/v[0-9]\+\.[0-9]\+\.[0-9]\+/|releases/download/v${{ matrix.model_version }}/|" pyproject.toml
           # Generate models
           make gen-models
           make lint test

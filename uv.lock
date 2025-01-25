@@ -176,18 +176,17 @@ wheels = [
 
 [[package]]
 name = "cloudcoil"
-version = "0.2.1"
+version = "0.2.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "cloudcoil-models-kubernetes" },
     { name = "httpx" },
     { name = "pydantic" },
     { name = "pyyaml" },
     { name = "typing-extensions", marker = "python_full_version < '3.11'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/89/36/6c37f4b3ac9735c94d146a2f66a7c68d3361b75e2f124c5b0be3cd78bc51/cloudcoil-0.2.1.tar.gz", hash = "sha256:8505f3a2202c97a27ba416cf8f5ad790ed29185f55ea51a6ac59eeabbdeef2f1", size = 312403 }
+sdist = { url = "https://files.pythonhosted.org/packages/ee/4c/388e71c40db8ff474b6af21f2821f8a12235419f48cb5e5b8e122adf5d05/cloudcoil-0.2.2.tar.gz", hash = "sha256:c38af8e3a56ed6706535cbba1826ac9772707f47d140704b928d8186167892c5", size = 316077 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/5c/5b/2812273d7200551f0f076b8d9108a4d386e7cd706a614cf00e5ffb320ee8/cloudcoil-0.2.1-py3-none-any.whl", hash = "sha256:07b683fca6f9ac4fc0e1aab8fe1a9feacc000f490fb3381b4981f2ad8efd591e", size = 62109 },
+    { url = "https://files.pythonhosted.org/packages/75/c5/204041b83668a790cc3543bfc6c0792fad0b6436eed29ab2eda0bd253d3d/cloudcoil-0.2.2-py3-none-any.whl", hash = "sha256:9060e59f974e98492e9a5a7e322abef8c07929d7bfbe88b4f379e5a86cda3bd8", size = 65852 },
 ]
 
 [package.optional-dependencies]
@@ -227,7 +226,7 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "cloudcoil", specifier = ">=0.0.31" }]
+requires-dist = [{ name = "cloudcoil", specifier = ">=0.2.0" }]
 
 [package.metadata.requires-dev]
 dev = [
@@ -247,18 +246,6 @@ dev = [
     { name = "pytest-sugar", specifier = ">=1.0.0" },
     { name = "ruff", specifier = ">=0.8.4" },
     { name = "types-pyyaml", specifier = ">=6.0.12.20241221" },
-]
-
-[[package]]
-name = "cloudcoil-models-kubernetes"
-version = "1.32.1.1"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "cloudcoil" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/b2/bc/fd75c66074c02eae6dfdcb1307f4db7e82990b797f272341cbf705c40e17/cloudcoil_models_kubernetes-1.32.1.1.tar.gz", hash = "sha256:4df2454c1c06992fcd9b530d10f4ac1a674447626d4c7cde460e557eb7fcb37d", size = 289284 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/5a/ef/a76dd7ab722e4eb444b70c083562581b4936c62eb0a43d4afc83a41cbdab/cloudcoil_models_kubernetes-1.32.1.1-py3-none-any.whl", hash = "sha256:da9465eb59fa1c5506d71668b40133292f7c8f49adee63a59a9bc80f43ea5f6b", size = 270585 },
 ]
 
 [[package]]
@@ -910,16 +897,16 @@ wheels = [
 
 [[package]]
 name = "pydantic"
-version = "2.10.5"
+version = "2.10.6"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "annotated-types" },
     { name = "pydantic-core" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/6a/c7/ca334c2ef6f2e046b1144fe4bb2a5da8a4c574e7f2ebf7e16b34a6a2fa92/pydantic-2.10.5.tar.gz", hash = "sha256:278b38dbbaec562011d659ee05f63346951b3a248a6f3642e1bc68894ea2b4ff", size = 761287 }
+sdist = { url = "https://files.pythonhosted.org/packages/b7/ae/d5220c5c52b158b1de7ca89fc5edb72f304a70a4c540c84c8844bf4008de/pydantic-2.10.6.tar.gz", hash = "sha256:ca5daa827cce33de7a42be142548b0096bf05a7e7b365aebfa5f8eeec7128236", size = 761681 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/58/26/82663c79010b28eddf29dcdd0ea723439535fa917fce5905885c0e9ba562/pydantic-2.10.5-py3-none-any.whl", hash = "sha256:4dd4e322dbe55472cb7ca7e73f4b63574eecccf2835ffa2af9021ce113c83c53", size = 431426 },
+    { url = "https://files.pythonhosted.org/packages/f4/3c/8cc1cc84deffa6e25d2d0c688ebb80635dfdbf1dbea3e30c541c8cf4d860/pydantic-2.10.6-py3-none-any.whl", hash = "sha256:427d664bf0b8a2b34ff5dd0f5a18df00591adcee7198fbd71981054cef37b584", size = 431696 },
 ]
 
 [package.optional-dependencies]
