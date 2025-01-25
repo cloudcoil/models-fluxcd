@@ -51,8 +51,14 @@ jobs:
           # Clone repo and checkout/create branch
           git clone https://github.com/${{ github.repository }}.git .
           git checkout "$BRANCH" 2>/dev/null || git checkout -b "$BRANCH"
+          
+          # Fetch and reset to remote branch if it exists
+          if git ls-remote --exit-code origin "$BRANCH"; then
+            git fetch origin "$BRANCH"
+            git reset --hard "origin/$BRANCH"
+          fi
 
-          # Remove all tracked files
+          # Remove all files (tracked and untracked)
           git rm -rf .
 
           # Copy new files and commit
