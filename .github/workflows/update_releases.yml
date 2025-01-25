@@ -40,7 +40,6 @@ jobs:
           sed -i "s|releases/download/v[0-9]\+\.[0-9]\+\.[0-9]\+/|releases/download/v${{ matrix.model_version }}/|" pyproject.toml
           # Generate models
           make gen-models
-          rm -rf .git
 
           # Create temporary directory and handle repository
           TEMP_DIR=$(mktemp -d)
@@ -60,6 +59,7 @@ jobs:
           git rm -rf .
 
           # Copy new files and commit
+          rm -rf $GITHUB_WORKSPACE/.git
           cp -a $GITHUB_WORKSPACE/. .
           # Configure git
           git config user.name "github-actions[bot]"
