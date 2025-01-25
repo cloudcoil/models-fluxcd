@@ -44,19 +44,26 @@ jobs:
           # Generate models
           make gen-models
           make lint test
+
           # Configure git
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Create or switch to version branch
-          git checkout -B "$BRANCH"
+          # Create temporary directory and handle repository
+          TEMP_DIR=$(mktemp -d)
+          cd "$TEMP_DIR"
+          
+          # Try to clone existing branch or initialize new repo
+          git clone --branch "$BRANCH" https://github.com/${{ github.repository }}.git . 2>/dev/null || {
+            git init
+            git remote add origin https://github.com/${{ github.repository }}.git
+          }
 
-          # Stage changes
-          git add .
-          # Only commit and push if there are changes
-          if ! git diff --staged --quiet; then
-            git commit -m "Update to version ${{ matrix.model_version }}"
-          else
-            echo "No changes to commit"
-          fi
-          git push -f origin "$BRANCH"
+          # Clear existing files (except .git)
+          find . -mindepth 1 -not -path './.git*' -delete
+          
+          # Copy new files and commit
+          cp -a $GITHUB_WORKSPACE/. .
+          git add -A
+          git diff --cached --quiet || git commit -m "Update to version ${{ matrix.model_version }}"
+          git push -u origin HEAD:"$BRANCH"
