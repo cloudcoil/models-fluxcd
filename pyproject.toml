@@ -14,7 +14,7 @@ classifiers = [
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "cloudcoil>=0.0.31",
+    "cloudcoil>=0.2.0",
 ]
 keywords = ["cloud-native", "kubernetes", "fluxcd", "pydantic", "python", "async", "cloudcoil", "cloudcoil-models"]
 
@@ -44,7 +44,7 @@ select = [
 ignore = ["E203", "B008", "N818", "E501", "B904"]
 
 [tool.pytest.ini_options]
-addopts = "--import-mode=importlib -ra -W ignore -q --cov=cloudcoil --cov-report=xml --cov-report=term -vvv --junitxml=junit.xml -o junit_family=legacy"
+addopts = "--import-mode=importlib -ra -q --cov=cloudcoil --cov-report=xml --cov-report=term -vvv --junitxml=junit.xml -o junit_family=legacy"
 testpaths = ["tests"]
 asyncio_mode = "auto"
 
@@ -71,13 +71,11 @@ dev = [
 [tool.mypy]
 plugins = ['pydantic.mypy', 'cloudcoil.mypy']
 
-[[tool.mypy.overrides]]
-# Ignore specific third-party packages
-module = "cloudcoil.models.fluxcd.image.*"
-disable_error_code = ["assignment"]
-
 [tool.coverage.run]
 omit = ["cloudcoil/models/**"]
+
+[tool.hatch.build.targets.wheel]
+only-include = ["cloudcoil"]
 
 [[tool.cloudcoil.codegen.models]]
 # Unique name for the models
@@ -85,6 +83,3 @@ omit = ["cloudcoil/models/**"]
 namespace = "cloudcoil.models.fluxcd"
 input = "https://github.com/fluxcd/flux2/releases/download/v2.4.0/install.yaml"
 crd-namespace = "io.fluxcd.toolkit"
-
-[tool.hatch.build.targets.wheel]
-only-include = ["cloudcoil"]

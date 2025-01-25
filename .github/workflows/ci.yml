@@ -1,3 +1,4 @@
+
 name: Run tests
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -41,6 +42,7 @@ jobs:
         run: make -j8 lint test
 
       - name: Upload coverage to Codecov
+        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.10'
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
@@ -51,4 +53,4 @@ jobs:
         uses: codecov/test-results-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-  
+          
