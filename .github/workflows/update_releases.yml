@@ -93,7 +93,7 @@ jobs:
 
       - name: Create draft release
         run: |
-          RELEASE_TAG="v${{ steps.next_version.outputs.next_version }}"
+          RELEASE_TAG="${{ steps.next_version.outputs.next_version }}"
           BASE_VERSION=$(echo "${{ matrix.model_version }}" | cut -d'.' -f1,2)          
           BRANCH="release-${BASE_VERSION}"
           
