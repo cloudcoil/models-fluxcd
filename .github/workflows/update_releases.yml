@@ -75,10 +75,10 @@ jobs:
         run: |
           # Get all existing tags that match the pattern
           BASE_VERSION="${{ matrix.model_version }}"
-          EXISTING_TAGS=$(gh api repos/${{ github.repository }}/releases --jq "[.[] | select(.tag_name | startswith(\"v${BASE_VERSION}.\"))].tag_name")
+          EXISTING_TAGS=$(gh api repos/${{ github.repository }}/releases --jq "[.[] | select(.tag_name | startswith(\"${BASE_VERSION}.\")).tag_name] | .[]")
           
           # Find highest x in v{BASE_VERSION}.x
-          HIGHEST_X=$(echo "$EXISTING_TAGS" | grep -o "${BASE_VERSION}\.[0-9]*" | cut -d. -f3 | sort -n | tail -n1)
+          HIGHEST_X=$(echo "$EXISTING_TAGS" | sort -V | tail -n1 | cut -d. -f3)
           
           # If no existing tags, start with 1, otherwise increment
           if [ -z "$HIGHEST_X" ]; then
@@ -97,7 +97,7 @@ jobs:
           BASE_VERSION=$(echo "${{ matrix.model_version }}" | cut -d'.' -f1,2)          
           
           # Find the previous release tag with same minor version using version sort
-          PREV_TAG=$(gh api repos/${{ github.repository }}/releases --jq "[.[] | select(.tag_name | startswith(\"v${BASE_VERSION}.\"))].tag_name[]" | sort -V | tail -n1)
+          PREV_TAG=$(gh api repos/${{ github.repository }}/releases --jq "[.[] | select(.tag_name | startswith(\"${BASE_VERSION}.\")).tag_name] | .[]" | sort -V | tail -n1)
           COMPARE_LINK=""
           if [ ! -z "$PREV_TAG" ]; then
             COMPARE_LINK="[Compare with previous release](https://github.com/${{ github.repository }}/compare/${PREV_TAG}...${RELEASE_TAG})"
