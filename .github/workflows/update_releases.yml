@@ -52,8 +52,8 @@ jobs:
           git clone https://github.com/${{ github.repository }}.git .
           git checkout "$BRANCH" 2>/dev/null || git checkout -b "$BRANCH"
 
-          # Clear existing files (except .git)
-          find . -mindepth 1 -not -path './.git*' -delete
+          # Remove all tracked files
+          git rm -rf .
 
           # Copy new files and commit
           cp -a $GITHUB_WORKSPACE/. .
