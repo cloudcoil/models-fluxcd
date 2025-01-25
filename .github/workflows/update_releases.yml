@@ -66,6 +66,7 @@ jobs:
           # Configure git
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          gh auth setup-git
           git add -A
           git diff --cached --quiet || git commit -m "Update to version ${{ matrix.model_version }}"
           git push -u origin HEAD:"$BRANCH"
