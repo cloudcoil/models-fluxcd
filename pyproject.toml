@@ -81,7 +81,10 @@ only-include = ["cloudcoil"]
 # Unique name for the models
 # This will be used as the name for the setuptools entrypoints
 namespace = "cloudcoil.models.fluxcd"
-input = "https://github.com/fluxcd/flux2/releases/download/v2.4.0/install.yaml"
+# Split the crl urls by comma
+input = [
+    "https://github.com/fluxcd/flux2/releases/download/v2.4.0/install.yaml",
+]
 crd-namespace = "io.fluxcd.toolkit"
 [[tool.mypy.overrides]]
 # Ignore specific third-party packages
