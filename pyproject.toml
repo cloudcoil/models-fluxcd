@@ -1,6 +1,6 @@
 [project]
 name = "cloudcoil.models.fluxcd"
-version = "0.0.0"
+version = "2.5.1.0"
 description = "Versioned fluxcd models for cloudcoil"
 authors = [{ name = "Sambhav Kothari", email = "sambhavs.email@gmail.com" }]
 maintainers = [{ name = "Sambhav Kothari", email = "sambhavs.email@gmail.com" }]
@@ -83,7 +83,7 @@ only-include = ["cloudcoil"]
 namespace = "cloudcoil.models.fluxcd"
 # Split the crl urls by comma
 input = [
-    "https://github.com/fluxcd/flux2/releases/download/v2.4.0/install.yaml",
+    "https://github.com/fluxcd/flux2/releases/download/v2.5.1/install.yaml",
 ]
 crd-namespace = "io.fluxcd.toolkit"
 [[tool.mypy.overrides]]
