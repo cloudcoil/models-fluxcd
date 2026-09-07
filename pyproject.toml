@@ -1,6 +1,6 @@
 [project]
 name = "cloudcoil.models.fluxcd"
-version = "2.9.5.0"
+version = "2.9.5.1"
 description = "Versioned fluxcd models for cloudcoil"
 authors = [{ name = "Sambhav Kothari", email = "sambhavs.email@gmail.com" }]
 maintainers = [{ name = "Sambhav Kothari", email = "sambhavs.email@gmail.com" }]
@@ -47,6 +47,7 @@ asyncio_mode = "auto"
 
 [dependency-groups]
 dev = [
+    "packaging>=24.2",
     "mypy>=1.19",
     "pyright>=1.1.407",
     "mkdocs>=1.6.1",
