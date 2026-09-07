@@ -1,0 +1,18 @@
+[
+  "__init__.py",
+  "_lookup.py",
+  "helm/__init__.py",
+  "helm/v2.py",
+  "image/__init__.py",
+  "image/v1.py",
+  "kustomize/__init__.py",
+  "kustomize/v1.py",
+  "notification/__init__.py",
+  "notification/v1.py",
+  "notification/v1beta3.py",
+  "py.typed",
+  "source/__init__.py",
+  "source/v1.py",
+  "source_extensions_fluxcd_io/__init__.py",
+  "source_extensions_fluxcd_io/v1beta1.py"
+]
